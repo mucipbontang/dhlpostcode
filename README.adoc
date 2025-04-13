@@ -1,4 +1,4 @@
-This guide will explain how to understand and run this simple DHL Postcode project.
+This guide will explain how to understand and run this simple DHL Postcode application.
 
 == What is the requirement
 
@@ -10,10 +10,10 @@ Free to use CSV or any databases. Make sure you provide clear instructions on ho
 
 Please design the REST APIs that able to achieve the purpose of this microservice. The result should fulfill following:
 
-•	JSON formatted
-•	Contains both location postcode and coordinate (latitude and longtide) in degree.
-•	Distance (for e.g. in KM measurement).
-•	The unit of measurement (for e.g. fixed string as “km”).
+. JSON formatted
+. Contains both location postcode and coordinate (latitude and longtide) in degree
+. Distance (for e.g. in KM measurement)
+. The unit of measurement (for e.g. fixed string as “km”)
 
 
 == What is the CSV file input
@@ -54,7 +54,8 @@ Please design the REST APIs that able to achieve the purpose of this microservic
 
 == Where, what and how to run the application in docker
 
-. mvn clean install : build the project
+. Dockerfile : create configuration for docker to execute
+. mvn clean install : build the application and produce .jar file
 . docker build -t dhlpost:latest . : create the image from .jar file
 . docker run -p 8081:8080 dhlpost : create the container based on the built image
 
