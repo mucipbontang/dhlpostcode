@@ -30,23 +30,30 @@ public class MainApplication {
 					.toAbsolutePath()
 					.toString();
 
-
-			try (BufferedReader br = new BufferedReader(new FileReader( "postcode-outcodes.csv"))) {
+			int totalLine = 1801375;
+			try (BufferedReader br = new BufferedReader(new FileReader( "filtered_ukpostcodes.csv"))) {
 				String line;
+				int counter = 0;
 				while ((line = br.readLine()) != null) {
-					log.info("store line into repository = "+line);
-					String[] values = line.split(",");
-					repository.save(new Postcode(values[0],values[1],values[2]));
+					counter++;
+					log.info("store line into repository {} out of {}",counter,totalLine);
+					try {
+						String[] values = line.split(",");
+						repository.save(new Postcode(values[0], values[1], values[2]));
+					}catch(Exception e) {
+						//  Block of code to handle errors
+						continue;
+					}
 				}
 			}
 
 			// verify all postcodes
-			log.info("Postcodes found with findAll():");
+			/*log.info("Postcodes found with findAll():");
 			log.info("-------------------------------");
 			repository.findAll().forEach(postcode -> {
 				log.info(postcode.toString());
 			});
-			log.info("");
+			log.info("");*/
 
 
 
