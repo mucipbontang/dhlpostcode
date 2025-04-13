@@ -1,0 +1,65 @@
+This guide will explain how to understand and run this simple DHL Postcode project.
+
+== What is the requirement
+
+Build a simple microservice (RESTful) that provide the service to determine the geographic distance between two postcodes in UK.
+
+The UK postcode coordinate data source is available in this website: https://www.freemaptools.com/download-uk-postcode-lat-lng.htm
+
+Free to use CSV or any databases. Make sure you provide clear instructions on how to setup the database you use.
+
+Please design the REST APIs that able to achieve the purpose of this microservice. The result should fulfill following:
+•	JSON formatted
+•	Contains both location postcode and coordinate (latitude and longtide) in degree.
+•	Distance (for e.g. in KM measurement).
+•	The unit of measurement (for e.g. fixed string as “km”).
+
+
+== What is the CSV file input
+
+. postcode-outcodes.csv : download from https://www.freemaptools.com/download-uk-postcode-lat-lng.htm and saved here
+
+
+== What are the initial object classes
+
+. Postcode.java : main object class
+. RequestPost.java : object class for post RESTful request
+. Response.java : object class for the positive RESTful response
+. ResponseNotFound.java : object class for the negative RESTful response
+
+
+== What to use as a database
+
+. PostcodeRepository.java : part of the larger Spring Data family, makes it easy to easily implement JPA-based (Java Persistence API) repositories. It makes it easier to build Spring-powered applications that use data access technologies.
+
+
+== Where and what are the logic
+
+. PostcodeController.java : the main logic to receive the RESTful request and give the response, as well as retrieve data from JPA repository and calculate the distance
+
+
+== Where and what are the unit test
+
+. PostcodeRepositoryTests.java : the class to test store the postcode and retrieve postcode by the code
+
+
+== Where, what and how to run the application in local windows
+
+. MainApplication.java : it's how Spring Boot launch the application
+. MainApplication.java : Upon launching the application, in this class itself, it fetches the PostcodeRepository from the Spring application context and it saves the postcode objects from the CSV file
+. mvn clean install : use this command to build application
+. ./mvnw spring-boot:run : use this command to launch application
+
+
+== Where, what and how to run the application in docker
+
+. mvn clean install : build the project
+. docker build -t dhlpost:latest . : create the image from .jar file
+. docker run -p 8081:8080 dhlpost : create the container based on the built image
+
+
+== How to verify
+
+. HTTP Method : POST
+. URL : http://localhost:8081/post
+. BODY : {"postcodeFrom": "DL8","postcodeTo": "BR6"}
