@@ -1,6 +1,6 @@
 This guide will explain how to understand and run this simple DHL Postcode application.
 
-== What is the requirement
+== Requirement
 
 Build a simple microservice (RESTful) that provide the service to determine the geographic distance between two postcodes in UK.
 
@@ -16,12 +16,12 @@ Please design the REST APIs that able to achieve the purpose of this microservic
 . The unit of measurement (for e.g. fixed string as “km”)
 
 
-== What is the CSV file input
+== CSV file input
 
 . postcode-outcodes.csv : download from https://www.freemaptools.com/download-uk-postcode-lat-lng.htm and saved here
 
 
-== What are the initial object classes
+== Main classes
 
 . Postcode.java : main object class
 . RequestPost.java : object class for post RESTful request
@@ -29,22 +29,22 @@ Please design the REST APIs that able to achieve the purpose of this microservic
 . ResponseNotFound.java : object class for the negative RESTful response
 
 
-== What to use as a database
+== Repositories
 
 . PostcodeRepository.java : part of the larger Spring Data family, makes it easy to easily implement JPA-based (Java Persistence API) repositories. It makes it easier to build Spring-powered applications that use data access technologies.
 
 
-== Where and what are the logic
+== Controller
 
 . PostcodeController.java : the main logic to receive the RESTful request and give the response, as well as retrieve data from JPA repository and calculate the distance
 
 
-== Where and what are the unit test
+== Unit Test
 
 . PostcodeRepositoryTests.java : the class to test store the postcode and retrieve postcode by the code
 
 
-== Where, what and how to run the application in local windows
+== Run the application in local windows
 
 . MainApplication.java : it's how Spring Boot launch the application
 . MainApplication.java : Upon launching the application, in this class itself, it fetches the PostcodeRepository from the Spring application context and it saves the postcode objects from the CSV file
@@ -52,7 +52,7 @@ Please design the REST APIs that able to achieve the purpose of this microservic
 . ./mvnw spring-boot:run : use this command to launch application
 
 
-== Where, what and how to run the application in docker
+== Integrate with Docker
 
 . Dockerfile : create configuration for docker to execute
 . mvn clean install : build the application and produce .jar file
@@ -60,7 +60,7 @@ Please design the REST APIs that able to achieve the purpose of this microservic
 . docker run -p 8081:8080 dhlpost : create the container based on the built image
 
 
-== How to verify
+== Verify RESTful API
 
 . HTTP Method : POST
 . URL : http://localhost:8081/post
