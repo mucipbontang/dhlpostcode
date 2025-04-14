@@ -64,4 +64,4 @@ Please design the REST APIs that able to achieve the purpose of this microservic
 
 . HTTP Method : POST
 . URL : http://localhost:8081/post
-. BODY : {"postcodeFrom": "DL8","postcodeTo": "BR6"}
+. BODY : {"postcodeFrom": "ZE1 0FJ","postcodeTo": "YO61 3SR"}
